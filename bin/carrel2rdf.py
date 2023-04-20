@@ -125,7 +125,10 @@ for index, bibliographic in enumerate( bibliographics ) :
 	sizeInWords     = str( bibliographic[ 'words' ] )
 	extension       = str( bibliographic[ 'extension' ] )
 	mimetypeitem    = bibliographic[ 'mime' ]
+	
+	# description is (apparently) sometimes empty; hmmm
 	descriptionitem = escape( bibliographic[ 'summary' ] )
+	if descriptionitem == None : descriptionitem = ''
 
 	# author/creator
 	creator              = escape( bibliographic[ 'author' ] )
