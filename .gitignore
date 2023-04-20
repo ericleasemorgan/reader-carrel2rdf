@@ -1,4 +1,4 @@
 .DS_Store
 etc/links-from-chuck
-rdr/*
+rdf/*
 logs/*

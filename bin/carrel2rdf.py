@@ -33,7 +33,7 @@ def escape( s ) :
 
 	# do the work, conditionallly
 	if not s : return
-	else     : return s.replace( '&', '&amp;' ).replace( '<', '&lt;' ).replace( '>', '&gt;' )
+	else     : return str( s ).replace( '&', '&amp;' ).replace( '<', '&lt;' ).replace( '>', '&gt;' )
 
 # get input
 if len( sys.argv ) != 2 : sys.exit( "Usage: " + sys.argv[ 0 ] + " <carrel>" )

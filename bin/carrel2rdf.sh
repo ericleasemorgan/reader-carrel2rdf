@@ -18,7 +18,7 @@ LIBRARY=$( rdr get )
 
 # find all carrels; create a list of jobs
 JOBS=()
-CARRELS=( $( find $LIBRARY -type d -maxdepth 1 ) )
+CARRELS=( $( find $LIBRARY -maxdepth 1 -type d  ) )
 for CARREL in ${CARRELS[@]}; do
 
 	# parse
