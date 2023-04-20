@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+	
+	<!-- about carrels -->
+	
+	<rdf:Description rdf:ID="carrel">
+ 		 <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	</rdf:Description>
+	
+	<rdf:Description rdf:ID="hasCreationProcess">
+  		<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Property"/>
+	</rdf:Description>
+
+	<rdf:Description rdf:ID="hasItems">
+  		<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Property"/>
+	</rdf:Description>
+		
+	<rdf:Description rdf:ID="hasTotalSizeInwords">
+  		<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Property"/>
+	</rdf:Description>
+	
+	<rdf:Description rdf:ID="hasTotalItems">
+  		<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Property"/>
+	</rdf:Description>
+	
+	<rdf:Description rdf:ID="hasAverageFlesch">
+  		<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Property"/>
+	</rdf:Description>
+
+	
+	<!-- about items -->
+	
+	<rdf:Description rdf:ID="item">
+  		<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	</rdf:Description>
+	
+	<rdf:Description rdf:ID="hasCache">
+  		<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Property"/>
+	</rdf:Description>
+	
+	<rdf:Description rdf:ID="hasPlainText">
+  		<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Property"/>
+	</rdf:Description>
+	
+	<rdf:Description rdf:ID="hasSizeInwords">
+  		<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Property"/>
+	</rdf:Description>
+	
+	<rdf:Description rdf:ID="hasFlesch">
+  		<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Property"/>
+	</rdf:Description>
+	
+	
+</rdf:RDF>

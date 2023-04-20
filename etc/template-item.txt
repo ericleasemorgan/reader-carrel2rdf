@@ -1,0 +1,23 @@
+<!-- description of a bibliographic item -->
+<terms:hasPart>
+	<rdf:Description rdf:ID="##IDITEM##">
+		<rdf:type rdf:resource="http://purl.org/dc/terms/BibliographicResource"/>
+		<rdf:type rdf:resource="https://distantreader.org/carrel#item"/>
+		<!-- uniform title -->
+		##BIBLIOGRAPHICCREATOR##
+		##BIBLIOGRAPHICTITLE##
+		##BIBLIOGRAPHICDATE##
+		<!-- extents -->
+		<crl:hasSizeInWords>##SIZEINWORDS##</crl:hasSizeInWords>
+		<crl:hasFlesch>##FLESH##</crl:hasFlesch>
+		<!-- notes -->
+		<terms:description>##DESCRIPTIONITEM##</terms:description>
+		<!-- subjects/keywords -->
+		##BIBLIOGRAPHICSUBJECTS##
+		##BIBLIOGRAPHICKEYWORDS##
+		<!-- holdings -->
+		<crl:hasCache terms:type="##MIMETYPEITEM##" rdf:resource="##URI##/cache/##IDITEM####EXTENSION##"/>
+		<crl:hasPlainText terms:type="text/plain" rdf:resource="##URI##/txt/##IDITEM##.txt"/>		
+	</rdf:Description>
+</terms:hasPart>
+
