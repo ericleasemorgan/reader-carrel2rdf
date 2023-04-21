@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
 # configure
-DIRECTORY = './rdf'
+DIRECTORY = './subset'
 PATTERN   = '*.rdf'
-OUTPUT    = 'xml'
+OUTPUT    = 'gml'
 
 # require
 from   pathlib import Path

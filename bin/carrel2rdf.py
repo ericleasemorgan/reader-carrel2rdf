@@ -121,6 +121,8 @@ for index, bibliographic in enumerate( bibliographics ) :
 		
 	# parse the simple stuff
 	idItem          = str( bibliographic[ 'id' ] )
+	idItem          = idItem.replace( ' ', '_' )
+	
 	flesch          = str( bibliographic[ 'flesch' ] )
 	sizeInWords     = str( bibliographic[ 'words' ] )
 	extension       = str( bibliographic[ 'extension' ] )
