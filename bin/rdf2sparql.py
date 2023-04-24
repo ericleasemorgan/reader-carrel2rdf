@@ -1,16 +1,33 @@
 #!/usr/bin/env python
 
 # configure
-DIRECTORY = './rdf'
+DIRECTORY = './subset'
 PATTERN   = '*.rdf'
 FORMAT    = 'xml'
 
-QUERY     = "SELECT ?o ( COUNT( ?o ) AS ?c ) WHERE { ?s terms:subject ?o . } GROUP BY ?o ORDER BY DESC( ?c )"
-QUERY     = "SELECT ?o ( COUNT( ?o ) AS ?c ) WHERE { ?s crl:keyword   ?o . } GROUP BY ?o ORDER BY DESC( ?c )"
 QUERY     = "SELECT DISTINCT ?s ?p ?o WHERE { ?s terms:subject ?o . }"
 QUERY     = "SELECT DISTINCT ?s ?p ?o WHERE { ?s terms:hasPart ?o . }"
 QUERY     = "SELECT DISTINCT ?s ?p ?o WHERE { ?s crl:keyword   ?o . }"
 QUERY     = "SELECT ?i ?a ?t ?d WHERE { ?i terms:creator ?a. ?i terms:title ?t. ?i terms:created ?d. }"
+QUERY     = '''PREFIX terms: <http://purl.org/dc/terms/> SELECT ?s ?o WHERE { ?s terms:subject ?o } LIMIT 25'''
+QUERY     = '''
+PREFIX terms: <http://purl.org/dc/terms/>
+SELECT ?subject ?object
+WHERE {
+  ?subject terms:subject ?object .
+}'''
+QUERY     = "SELECT ?s ?o WHERE { { ?s terms:subject ?o } UNION { ?s crl:keyword ?o . } }"
+QUERY = '''PREFIX terms: <http://purl.org/dc/terms#>
+PREFIX crl: <https://distantreader.org/carrel#>
+SELECT *
+WHERE {?s crl:keyword ?o }
+LIMIT 51200'''
+
+QUERY = '''PREFIX crl: <https://distantreader.org/carrel#>
+SELECT *
+WHERE {
+  { ?s crl:keyword ?o } UNION { ?s terms:subject ?o }}'''
+
 
 # require
 from   pathlib import Path
@@ -28,12 +45,9 @@ for file in directory.glob( PATTERN ) : g = g.parse( file, format=FORMAT )
 results = g.query( QUERY )
 for result in results :
 
-	i = result.i
-	a = result.a
-	t = result.t
-	d = result.d
-	
-	print( '\t'.join( [ i, a, t, d ] ) )
+	s = result.s
+	o = result.o
+	print( '\t'.join([ s, o ]) )
 
 # done	
 exit()

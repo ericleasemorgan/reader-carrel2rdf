@@ -16,6 +16,7 @@ Critias	Q294092
 Cupid	Q5011
 Earth	Q2
 Falstaff	Q1233109
+Fedora Commons	Q1400825
 France	Q142
 Functional Requirements for Bibliographic Records	Q16388
 General	Q2608441
@@ -25,6 +26,7 @@ Gloucester	Q170497
 God	Q190
 Hawthorne	Q688596
 Hector	Q159666
+International Standard Book Number	Q33057
 Internet	Q75
 Julius Caesar	Q1048
 Jupiter	Q4649
@@ -44,8 +46,11 @@ Odysseus	Q47231
 Phaedrus	Q554535
 Physeter macrocephalus	Q81214
 Plato	Q859
+Preservation Metadata: Implementation Strategies	Q2108820
+Primo	Q108376616
 Prince Hamlet	Q2447542
 Protagoras	Q169243
+Python	Q28865
 Queequeg	Q3414055
 RDF Schema	Q1751819
 Richmond	Q43421
@@ -66,6 +71,7 @@ War	Q2058013
 Wikibase	Q16354758
 William Tecumseh Sherman	Q188936
 World Wide Web	Q466
+ZIP	Q136218
 accessibility	Q555097
 aesthetic	Q35986
 aesthetics	Q35986
@@ -104,6 +110,7 @@ death	Q4
 deity	Q178885
 digitization	Q843958
 duke	Q166886
+ebook	Q128093
 entity	Q35120
 evil	Q15292
 experience	Q1355387
@@ -122,6 +129,7 @@ government	Q7188
 hand	Q33767
 happiness	Q8
 head	Q23640
+health	Q12147
 heart	Q1072
 history	Q309
 horse	Q726
@@ -129,6 +137,7 @@ house	Q3947
 human	Q5
 husband	Q212878
 idea	Q131841
+image	Q478798
 imagination	Q34516
 infection	Q166231
 information	Q11028

@@ -3,29 +3,42 @@
 # configure
 DIRECTORY = './subset'
 PATTERN   = '*.rdf'
-OUTPUT    = 'gml'
+QUERY     = 'PREFIX crl:<https://distantreader.org/carrel#> SELECT * WHERE { ?s a crl:item . ?s crl:keyword ?o }'
 
 # require
 from   pathlib import Path
-from   rdflib.extras.external_graph_libs import rdflib_to_networkx_multidigraph
 import networkx as nx
 import rdflib
 import sys
 
 # initialize
-g         = rdflib.Graph()
+graph     = rdflib.Graph()
 directory = Path( DIRECTORY )
 
-# process each file; merge all into a graph
-for file in directory.glob( PATTERN ) : g = g.parse( file, format='xml' )
+# process each file; merge rdf files into single graph
+for file in directory.glob( PATTERN ) : graph = graph.parse( file, format='xml' )
 
-if OUTPUT == 'gml' : 
+# search the graph and process each result; create lists of nodes and edges
+results = graph.query( QUERY )
+nodes   = []
+edges   = []
+for result in results :
+	
+	# parse; very specific to the given query
+	source = result[ 's' ].split( '/')[ -1 ]
+	target = result[ 'o' ]
+	
+	# update lists of nodes and edges
+	nodes.append( ( source, { "type" : "item" } ) )
+	nodes.append( ( target, { "type" : "keyword" } ) )
+	edges.append( ( source, target ) )
 
-	# convert to networkx graph, output, and done
-	G = rdflib_to_networkx_multidigraph( g )
-	nx.write_gml( G, sys.stdout.buffer )
+# build the graph; very smart
+graph = nx.Graph()
+graph.add_nodes_from( nodes )
+graph.add_edges_from( edges )
 
-elif OUTPUT == 'xml' : print( g.serialize( format="xml" ) )
-
-else : sys.stderr.write( 'Unknown value for OUTPUT; call Eric.\n' )
+# output and done
+nx.write_gml( graph, sys.stdout.buffer )
+exit()
 
