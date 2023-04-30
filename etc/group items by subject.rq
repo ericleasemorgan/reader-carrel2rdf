@@ -1,0 +1,14 @@
+
+# given a list of carrel items, count and tabulate subject terms
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix terms: <http://purl.org/dc/terms#>
+
+select ?label (count( ?label ) as ?c )
+where {
+	?s terms:hasPart ?o        .
+ 	?o terms:subject ?qnumber  .  
+  	?qnumber rdfs:label ?label .
+}
+group by ?label order by desc( ?c )
+limit 128

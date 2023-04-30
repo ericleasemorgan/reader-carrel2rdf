@@ -1,0 +1,9 @@
+PREFIX terms: <http://purl.org/dc/terms#>
+PREFIX crl: <https://distantreader.org/carrel#>
+SELECT *
+WHERE {
+	#{ ?s crl:keyword ?o }
+	#UNION
+	{ ?s terms:subject ?o }
+}
+LIMIT 25

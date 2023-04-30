@@ -25,7 +25,7 @@ edges   = []
 for result in results :
 	
 	# parse; very specific to the given query
-	source = result[ 's' ].split( '/')[ -1 ]
+	source = result[ 's' ].split( '/')[ -1 ].split( '#' )[ 1 ]
 	target = result[ 'o' ]
 	
 	# update lists of nodes and edges
