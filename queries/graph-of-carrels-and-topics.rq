@@ -1,0 +1,33 @@
+# create graph of carrels and their topics (keywords/subjects)
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX terms: <http://purl.org/dc/terms#>
+PREFIX crl:   <https://distantreader.org/carrel#>
+
+# denote a graph as output
+CONSTRUCT { ?carrel crl:about ?topic }
+
+# search
+WHERE {
+ 	
+ 	# get all carrels
+ 	?carrel a crl:carrel
+ 	
+	{
+	
+    	{ 
+    		# get all keywords of given carrels
+    		?carrel crl:keyword ?topic
+    	}
+		
+		# and
+		UNION
+		
+		{
+			# from the same given carrels get all labels of subjects
+			?carrel  terms:subject ?qnumber .
+			?qnumber rdfs:label    ?topic
+    	}
+    	
+	}	
+	
+}

@@ -126,8 +126,11 @@ for index, bibliographic in enumerate( bibliographics ) :
 	flesch          = str( bibliographic[ 'flesch' ] )
 	sizeInWords     = str( bibliographic[ 'words' ] )
 	extension       = str( bibliographic[ 'extension' ] )
-	mimetypeitem    = bibliographic[ 'mime' ]
 	
+	# mimetypeitem is (apparently) sometimes empty; hmmm
+	mimetypeitem    = bibliographic[ 'mime' ]
+	if mimetypeitem == None : mimetypeitem = ''
+
 	# description is (apparently) sometimes empty; hmmm
 	descriptionitem = escape( bibliographic[ 'summary' ] )
 	if descriptionitem == None : descriptionitem = ''

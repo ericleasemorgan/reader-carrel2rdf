@@ -27,6 +27,9 @@ for CARREL in ${CARRELS[@]}; do
 	# sanity check
 	if [[ $CARREL == $( basename $LIBRARY ) ]]; then continue; fi
 	
+	# do not do the work if it has already been done
+	if [[ -f "$RDF/$CARREL.rdf" ]]; then continue; fi
+	
 	# update the to-do list
 	JOBS+=( $CARREL )
 	
