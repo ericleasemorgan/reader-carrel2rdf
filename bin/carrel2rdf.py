@@ -12,6 +12,7 @@
 # configure
 TEMPLATECARREL  = './etc/template-carrel.txt'
 TEMPLATEITEM    = './etc/template-item.txt'
+TEMPLATEAUTHOR  = './etc/template-author.txt'
 TEMPLATECREATOR = './etc/template-creator.txt'
 TEMPLATETITLE   = './etc/template-title.txt'
 TEMPLATEDATE    = './etc/template-date.txt'
@@ -114,6 +115,16 @@ if len( carrelSubjects ) == 0 :
 # giving up; no subjects
 if len( carrelSubjects ) == 0 : carrelSubjects = ''
 
+# get creators/authors
+creatorWords = None
+authorWords  = None
+creators     = ( rdr.configuration( 'localLibrary' ) )/carrel/( rdr.ETC )/( rdr.AUTHORS )
+if creators.exists() :
+
+	vocabulary   = pd.read_csv( creators, sep='\t' )
+	creatorWords = vocabulary[ vocabulary[ 'qnumber' ].notnull() ]
+	authorWords  = vocabulary[ vocabulary[ 'qnumber' ].isnull() ]
+
 # create a list of bibliographic items
 bibliographicItems = []
 bibliographics     = json.loads( rdr.bibliography( carrel, format='json' ) )
@@ -135,12 +146,28 @@ for index, bibliographic in enumerate( bibliographics ) :
 	descriptionitem = escape( bibliographic[ 'summary' ] )
 	if descriptionitem == None : descriptionitem = ''
 
-	# author/creator
-	creator              = escape( bibliographic[ 'author' ] )
+	# creator
 	bibliographicCreator = ''
-	if creator :
+	if not creatorWords.empty :
+	
+		# read the template and process each creator
 		with open( Path( TEMPLATECREATOR ) ) as handle : templateCreator = handle.read()
-		bibliographicCreator = templateCreator.replace( '##CREATOR##', creator )
+		for _, creatorWord in creatorWords.iterrows() :
+			
+			# check for the current identifier
+			if str( creatorWord[ 'id' ] ) == idItem :
+						
+				# parse, fill template, and updatae
+				qName                = escape( creatorWord[ 'author' ] )
+				qNumber              = WIKIDATAROOT + creatorWord[ 'qnumber' ]
+				bibliographicCreator = templateCreator.replace( '##QNAME##', qName ).replace( '##QNUMBER##', qNumber )
+
+	# author
+	author              = escape( bibliographic[ 'author' ] )
+	bibliographicAuthor = ''
+	if author :
+		with open( Path( TEMPLATEAUTHOR ) ) as handle : templateAuthor = handle.read()
+		bibliographicAuthor = templateAuthor.replace( '##AUTHOR##', author )
 	
 	# title
 	titleItem          = escape( bibliographic[ 'title' ] )
@@ -192,6 +219,7 @@ for index, bibliographic in enumerate( bibliographics ) :
 	# fill in template and update
 	bibliographicItem = templateItem.replace( '##IDITEM##', idItem )
 	bibliographicItem = bibliographicItem.replace( '##BIBLIOGRAPHICCREATOR##', bibliographicCreator )
+	bibliographicItem = bibliographicItem.replace( '##BIBLIOGRAPHICAUTHOR##', bibliographicAuthor )
 	bibliographicItem = bibliographicItem.replace( '##BIBLIOGRAPHICTITLE##', bibliographicTitle )
 	bibliographicItem = bibliographicItem.replace( '##BIBLIOGRAPHICDATE##', bibliographicDate )
 	bibliographicItem = bibliographicItem.replace( '##BIBLIOGRAPHICSUBJECTS##', ' '.join( bibliographicSubjects ) )	

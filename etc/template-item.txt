@@ -5,6 +5,7 @@
 		<rdf:type rdf:resource="https://distantreader.org/carrel#item"/>
 		<!-- uniform title -->
 		##BIBLIOGRAPHICCREATOR##
+		##BIBLIOGRAPHICAUTHOR##
 		##BIBLIOGRAPHICTITLE##
 		##BIBLIOGRAPHICDATE##
 		<!-- extents -->

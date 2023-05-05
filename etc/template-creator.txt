@@ -1,1 +1,1 @@
-<terms:creator>##CREATOR##</terms:creator>
+<terms:creator rdfs:label="##QNAME##" rdf:resource="##QNUMBER##"/>
