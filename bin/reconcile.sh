@@ -6,10 +6,12 @@
 # (c) University of Notre Dame; distributed under a GNU Public License
 
 # April 3, 2023 - first cut
+# May   5, 2023 - added authors/creators
 
 
 # configure
-RECONCILE='./bin/reconcile.py'
+RECONCILESUBJECTS='./bin/reconcile.py'
+RECONCILECREATORS='./bin/reconcile-authors.py'
 
 # initialize
 LIBRARY=$( rdr get )
@@ -30,6 +32,11 @@ for CARREL in ${CARRELS[@]}; do
 	
 done
 
-# do the work and done
-parallel $RECONCILE ::: ${JOBS[@]}
+# do the work
+echo "Reconciling subjects" >&2
+parallel $RECONCILESUBJECTS ::: ${JOBS[@]}
+#echo "Reconciling creators" >&2
+#parallel $RECONCILECREATORS ::: ${JOBS[@]}
+
+# done
 exit
