@@ -10,7 +10,7 @@
 
 # configure
 CARREL2RDF='./bin/carrel2rdf.py'
-RDF='./rdf'
+RDF='./carrels'
 LOGS='./logs'
 
 # initialize

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns:crl   = "https://distantreader.org/carrel#"
+<rdf:RDF xmlns:carrel   = "https://distantreader.org/carrel#"
          xmlns:terms = "http://purl.org/dc/terms#"
          xmlns:types = "http://purl.org/dc/dcmitype/"
          xmlns:rdf   = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -7,20 +7,27 @@
 
   <!-- description of a carrel -->
   <rdf:Description rdf:about="##URI##">
+    <!--
     <rdf:type rdf:resource="https://distantreader.org/carrel#carrel"/>
     <rdf:type rdf:resource="http://purl.org/dc/dcmitype/Dataset"/>
     <rdf:type rdf:resource="http://purl.org/dc/dcmitype/Collection"/>
+    -->
     <!-- uniform title -->
+    <!--
     <terms:creator rdfs:label="Eric Lease Morgan" rdf:resource="https://www.wikidata.org/wiki/Q102275801"/>
     <terms:title>##CARREL##</terms:title>
     <terms:created>##DATECREATED##</terms:created>
+    -->
     <!-- extent -->
-    <crl:hasCreationProcess>##PROCESS##</crl:hasCreationProcess>
-    <crl:hasTotalSizeInItems>##TOTALSIZEINITEMS##</crl:hasTotalSizeInItems>
-    <crl:hasTotalSizeInWords>##TOTALSIZEINWORDS##</crl:hasTotalSizeInWords>
-    <crl:hasAverageFlesch>##AVERAGEFLESCH##</crl:hasAverageFlesch>  
+    
+    <carrel:hasCreationProcess>##PROCESS##</carrel:hasCreationProcess>
+    <carrel:hasTotalSizeInItems>##TOTALSIZEINITEMS##</carrel:hasTotalSizeInItems>
+    <carrel:hasTotalSizeInWords>##TOTALSIZEINWORDS##</carrel:hasTotalSizeInWords>
+    <carrel:hasAverageFlesch>##AVERAGEFLESCH##</carrel:hasAverageFlesch> 
     <!-- subjects/keywords -->
+	<!--
 	##CARRELSUBJECTS##
+    -->
 	
 	##BIBLIOGRAPHICITEMS##
   

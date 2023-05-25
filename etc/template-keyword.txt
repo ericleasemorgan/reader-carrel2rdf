@@ -1,1 +1,1 @@
-<crl:keyword>##KEYWORD##</crl:keyword>
+<carrel:keyword>##KEYWORD##</carrel:keyword>

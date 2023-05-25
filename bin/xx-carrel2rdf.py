@@ -21,8 +21,6 @@ TEMPLATEKEYWORD = './etc/template-keyword.txt'
 HTTPROOT        = 'https://distantreader.org/stacks/carrels/'
 WIKIDATAROOT    = 'https://www.wikidata.org/wiki/'
 THRESHOLD       = 25.0
-TEMPLATESPARQL  = './etc/qnumber2graph.rq'
-FORMAT          = 'xml'
 
 # require
 from   pathlib import Path
@@ -30,7 +28,6 @@ import json
 import pandas as pd
 import rdr
 import sys
-import rdflib
 
 # escape the bare bonest of entities
 def escape( s ) : 
@@ -43,33 +40,8 @@ def escape( s ) :
 if len( sys.argv ) != 2 : sys.exit( "Usage: " + sys.argv[ 0 ] + " <carrel>" )
 carrel = sys.argv[ 1 ]
 
-# initialize
-graph = rdflib.Graph()
-with open( TEMPLATESPARQL	) as handle: template = handle.read()
-
-# get all qnumbers
-wrds = ( rdr.configuration( 'localLibrary' ) )/carrel/( rdr.ETC )/( rdr.WRDS )
-if wrds.exists() :
-
-	vocabulary = pd.read_csv( wrds, sep='\t' )
-	subjects   = vocabulary[ vocabulary[ 'qnumber' ].notnull() ]
-	qnumbers   = sorted( set( subjects[ 'qnumber' ].tolist() ) )
-
-# process each qnumber
-for index, qnumber in enumerate( qnumbers ) :
-
-	# debug and re-initialize
-	sys.stderr.write( qnumber + '\n')
-	results = rdflib.Graph()
-	
-	# build the query, search, get rdf, and update; tricky
-	rdf = results.query( template.replace( '##QNUMBER##', qnumber ) ).serialize( format=FORMAT ).decode()
-	graph.parse( data=rdf, format=FORMAT )
-
-	#if index > 3 : break
-	
-# serialize
-resources = graph.serialize( format=FORMAT ) 
+# debug
+#sys.stderr.write( 'RDFing ' + carrel + '\n' )
 
 # initialize
 uri = HTTPROOT + carrel
@@ -274,7 +246,5 @@ rdf = rdf.replace( '##CARRELSUBJECTS##', ' '.join( carrelSubjects ) )
 rdf = rdf.replace( '##BIBLIOGRAPHICITEMS##', ' '.join( bibliographicItems ) )
 
 # output and done
-graph = rdflib.Graph()
-#graph.parse( data=rdf, format=FORMAT )
-graph.parse( data=resources, format=FORMAT )
-print( graph.serialize( format=FORMAT ) )
+print( rdf )
+exit()

@@ -1,1 +1,1 @@
-<crl:hasAuthor>##AUTHOR##</crl:hasAuthor>
+<carrel:hasAuthor>##AUTHOR##</carrel:hasAuthor>
